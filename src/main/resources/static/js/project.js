@@ -13,3 +13,26 @@ okagree?.addEventListener('click', ()=> {
 noagree?.addEventListener('click', ()=> {
     location.href = "/";
 });
+
+
+//checkme
+let frm  = document.forms.agreefrm2;
+let checkbtn2 = document.querySelector("#checkbtn2");
+let cancelbtn2 = document.querySelector("#cancelbtn2");
+
+checkbtn2?.addEventListener('click', ()=> {
+    if(frm.name2.value === '') { alert("이름을 입력하세요.")
+    } else if(frm.jumin1.value === '') { alert("주민번호 앞자리를 입력하세요.")
+    } else if(frm.jumin2.value === '') { alert("주민번호 뒷자리를 입력하세요.")
+    } else if(!frm.infoagree.checked) { alert("주민번호 처리에 동의하세요.")
+    } else {
+        let params = '?name=' + frm.name2.value;
+        params += '&jumin1=' + frm.jumin1.value;
+        params += '&jumin2=' + frm.jumin2.value;
+        location.href = "/join/joinme" + params;
+    }
+});
+
+cancelbtn2?.addEventListener('click', ()=> {
+    location.href = "/";
+});
