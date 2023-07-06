@@ -41,20 +41,20 @@
                     <div class="row mb-3 mt-5 mb-3">
                         <label for="name" class="col-2 col-form-label text-danger text-end">이름</label>
                         <div class="col-3">
-                            <input type="text" name="name" id="name" class="form-control border-danger bg-light" readonly>
+                            <input type="text" name="name" id="name" class="form-control border-danger bg-light" readonly th:value="${session.checkme.name2}">
                         </div>
                     </div><!-- name -->
 
                     <div class="row mb-3">
                         <label for="jumin1" class="col-2 col-form-label text-danger text-end">주민번호</label>
                         <div class="col-3">
-                            <input type="text" name="jumin1" id="jumin1" class="form-control border-danger bg-light" readonly>
+                            <input type="text" name="jumin1" id="jumin1" class="form-control border-danger bg-light" readonly th:value="${session.checkme.jumin1}">
                         </div><!-- jumin1 -->
                         <!--<div class="col-1 text-center ">
                             <span class="hypen">&boxh;</span>
                         </div>--><!-- sign -->
                         <div class="col-3">
-                            <input type="text" name="jumin2" id="jumin2" class="form-control border-danger bg-light" readonly>
+                            <input type="text" name="jumin2" id="jumin2" class="form-control border-danger bg-light" readonly th:value="${session.checkme.jumin2}">
                         </div><!-- jumin2 -->
                     </div><!-- jumin -->
 
@@ -178,9 +178,8 @@
                 <input type="hidden" name="phone" id="phone">
                 <input type="hidden" name="checkuid" id="checkuid">
             </form>
-        </div><!-- trems -->
 
-        <div class="modal fade modal-lg" id="zipmodal" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal fade modal-lg" id="zipmodal" data-bs-backdrop="static" data-bs-keyboard="false">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -203,22 +202,22 @@
                             <div class="row">
                                 <div class="col-8 offset-2">
                                     <select class="form-select" id="addrlist" name="addrlist" size="10">
-                                    <option>서울시 관악구 남부순환로 1820</option>
-                                    <option>서울시 관악구 남부순환로 1820</option>
-                                    <option>서울시 관악구 남부순환로 1820</option>
-                                    <option>서울시 관악구 남부순환로 1820</option>
-                                    <option>서울시 관악구 남부순환로 1820</option>
-                                    <option>서울시 관악구 남부순환로 1820</option>
-                                    <option>서울시 관악구 남부순환로 1820</option>
-                                    <option>서울시 관악구 남부순환로 1820</option>
-                                    <option>서울시 관악구 남부순환로 1820</option>
-                                    <option>서울시 관악구 남부순환로 1820</option>
-                                    <option>서울시 관악구 남부순환로 1820</option>
-                                    <option>서울시 관악구 남부순환로 1820</option>
-                                    <option>서울시 관악구 남부순환로 1820</option>
-                                    <option>서울시 관악구 남부순환로 1820</option>
-                                    <option>서울시 관악구 남부순환로 1820</option>
-                                </select>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                        <option>서울시 관악구 남부순환로 1820</option>
+                                    </select>
                                 </div>
                             </div><!-- show zip -->
                         </form>
@@ -231,5 +230,9 @@
                 </div>
             </div>
         </div><!-- zipcode modal -->
+
+    </div><!-- trems -->
+
+
 </th:block>
 </html>
