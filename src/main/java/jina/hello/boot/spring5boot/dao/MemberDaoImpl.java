@@ -30,6 +30,6 @@ public class MemberDaoImpl implements MemberDao{
 
     @Override
     public List<Member> selectMember() {
-        return null;
+        return memberMapper.selectMember();
     }
 }
