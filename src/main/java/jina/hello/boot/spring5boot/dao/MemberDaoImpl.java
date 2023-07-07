@@ -1,6 +1,7 @@
 package jina.hello.boot.spring5boot.dao;
 
 import jina.hello.boot.spring5boot.model.Member;
+import jina.hello.boot.spring5boot.model.Zipcode;
 import jina.hello.boot.spring5boot.mybatis.MemberMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
@@ -17,8 +18,8 @@ public class MemberDaoImpl implements MemberDao{
     @Autowired
     final MemberMapper memberMapper;
 
-    @Autowired
-    private SqlSession sqlSession;
+//    @Autowired
+//    private SqlSession sqlSession;
 
     @Override
     public int insertMember(Member m) {
@@ -31,5 +32,10 @@ public class MemberDaoImpl implements MemberDao{
     @Override
     public List<Member> selectMember() {
         return memberMapper.selectMember();
+    }
+
+    @Override
+    public List<Zipcode> selectzip(String dong) {
+        return memberMapper.findZipcode(dong);
     }
 }

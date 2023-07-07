@@ -1,6 +1,7 @@
 package jina.hello.boot.spring5boot.dao;
 
 import jina.hello.boot.spring5boot.model.Member;
+import jina.hello.boot.spring5boot.model.Zipcode;
 
 import java.util.List;
 
@@ -9,4 +10,5 @@ public interface MemberDao {
 
     List<Member> selectMember();
 
+    List<Zipcode> selectzip(String dong);
 }
