@@ -38,4 +38,9 @@ public class MemberDaoImpl implements MemberDao{
     public List<Zipcode> selectzip(String dong) {
         return memberMapper.findZipcode(dong);
     }
+
+    @Override
+    public int selectOneUserid(String uid) {
+        return memberMapper.selectOneUserid(uid);
+    }
 }
