@@ -98,4 +98,17 @@ public class JoinController {
         res.setContentType("application/json; charset=utf-8");
         res.getWriter().print(msrv.checkuid(uid));
     }
+
+    // 로그인 처리
+    @PostMapping("/login")
+    public String login(Member m, HttpSession sess) {
+        logger.info("join/login 호출!!");
+        String returnPage = "redirect:/loginfail";
+        m = msrv.readOneMember(m);
+        if(msrv.readOneMember(m) != null) {
+            sess.setAttribute("member", m);
+            returnPage = "redirect:/";
+        }
+        return returnPage;
+    }
 }
