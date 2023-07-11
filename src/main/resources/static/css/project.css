@@ -1,3 +1,8 @@
 .red { color: red }
-
 .hypen { display: inline-block; margin-top: 5px;}
+
+/* board */
+.tbborder { border-top: 3px solid black;
+            border-bottom: 3px solid black;}
+.thbg{ background-color: #dff0d8;}
+.thborder tr { border-bottom: silver }
