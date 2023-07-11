@@ -52,8 +52,8 @@ const showzipaddr = (jsons) => {
     let addr = '';
     jsons.forEach(function (data, idx) {    // json 반복처리
         // 주소의 번지가 null인 경우 처리
-        let bunji = (data['bunji1']) !== null ? data['bunji1'] : '';
-        addr += `<option>${data['zipcode']} ${data['sido']} ${data['gugun']} ${data['dong']} ${data['bunji']}</option>`;
+        let bunji = (data['bunji'] !== null) ? data['bunji'] : '';
+        addr += `<option>${data['zipcode']} ${data['sido']} ${data['gugun']} ${data['dong']} ${bunji}</option>`;
     });
     addrlist.innerHTML = addr;
 };
