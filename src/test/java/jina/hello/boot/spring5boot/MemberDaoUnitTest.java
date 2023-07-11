@@ -27,7 +27,7 @@ public class MemberDaoUnitTest {
     @Test
     @DisplayName("MemberDao insert Test")
     void insertMember() {
-        Member m = new Member(null, "","","","","","","","",null);
+        Member m = new Member(null, "","","","","","","","","",null);
         int result = mdao.insertMember(m);
         System.out.println(result);
         assertEquals(result, 1);
@@ -42,11 +42,22 @@ public class MemberDaoUnitTest {
     }
 
     @Test
-    @DisplayName("MemberMapper checkUserid Test")
+    @DisplayName("MemberDao checkUserid Test")
     void checkUserid() {
         String uid = "abc123";
         int result = mdao.selectOneUserid(uid);
         System.out.println(result);;
         assertEquals(result, 1);
+    }
+
+    @Test
+    @DisplayName("MemberDao selectOneMember Test")
+    void selectOneMember() {
+        Member m = new Member();
+        m.setUserid("abc123");
+        m.setPasswd("987xyz");
+        Member result = mdao.selectOneMember(m);
+        System.out.println(result);
+        assertNotNull(result);
     }
 }
