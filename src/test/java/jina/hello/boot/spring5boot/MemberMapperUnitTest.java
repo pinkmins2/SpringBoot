@@ -22,7 +22,7 @@ public class MemberMapperUnitTest {
     @Test
     @DisplayName("MemberMapper insert Test")
     void insertMember() {
-        Member m = new Member(null, "","","","","","","","",null);
+        Member m = new Member(null, "","","","","","","","","",null);
         int result = memberMapper.insertMember(m);
         System.out.println(result);
         assertEquals(result, 1);
@@ -34,5 +34,16 @@ public class MemberMapperUnitTest {
         List<Member> results = memberMapper.selectMember();
         System.out.println(results);
         assertNotNull(results);
+    }
+
+    @Test
+    @DisplayName("MemberMapper selectOneMember Test")
+    void selectOneMember() {
+        Member m = new Member();
+        m.setUserid("abc123");
+        m.setPasswd("987xyz");
+        Member result = memberMapper.selectOneMember(m);
+        System.out.println(result);
+        assertNotNull(result);
     }
 }
