@@ -105,10 +105,18 @@ public class JoinController {
         logger.info("join/login 호출!!");
         String returnPage = "redirect:/loginfail";
         m = msrv.readOneMember(m);
-        if(msrv.readOneMember(m) != null) {
+        if(m != null) {
             sess.setAttribute("member", m);
             returnPage = "redirect:/";
         }
         return returnPage;
+    }
+
+    // 로그아웃 처리
+    @GetMapping("/logout")
+    public String logout(HttpSession sess) {
+        logger.info("join/logout 호출!!");
+        sess.invalidate();
+        return "redirect:/";
     }
 }
