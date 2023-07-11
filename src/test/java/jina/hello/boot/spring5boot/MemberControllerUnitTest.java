@@ -30,11 +30,23 @@ public class MemberControllerUnitTest {
                 .param("userid","abc123a")
                 .param("passwd","")
                 .param("name","")
+                .param("jumin","")
                 .param("email","abc123a")
                 .param("zipcode","")
                 .param("addr1","")
                 .param("addr2","")
                 .param("phone",""))
+                .andExpect(status().is3xxRedirection())
+                .andDo(print());
+    }
+
+    @Test
+    @DisplayName("MemberController login Test")
+    @Transactional
+    void login() throws Exception {
+        mvc.perform(post("/join/login")
+                        .param("userid","abc123")
+                        .param("passwd","987xyz"))
                 .andExpect(status().is3xxRedirection())
                 .andDo(print());
     }
