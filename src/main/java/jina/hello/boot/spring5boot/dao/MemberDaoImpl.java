@@ -43,4 +43,9 @@ public class MemberDaoImpl implements MemberDao{
     public int selectOneUserid(String uid) {
         return memberMapper.selectOneUserid(uid);
     }
+
+    @Override
+    public Member selectOneMember(Member m) {
+        return memberMapper.selectOneMember(m);
+    }
 }

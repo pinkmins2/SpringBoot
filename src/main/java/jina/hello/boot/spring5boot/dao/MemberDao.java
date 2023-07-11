@@ -13,4 +13,6 @@ public interface MemberDao {
     List<Zipcode> selectzip(String dong);
 
     int selectOneUserid(String uid);
+
+    Member selectOneMember(Member m);
 }
