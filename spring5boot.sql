@@ -18,3 +18,32 @@ values ('abc123','987xyz','jina','jina@abc123.co.kr','123-456','서울','관악�
 
 select *
 from member2;
+
+-- board
+create table board2 (
+    bno         int             auto_increment,
+    title       varchar(100)    not null,
+    userid      varchar(18)     not null,
+    regdate     datetime        default current_timestamp,
+    thumbs      int             default 0,
+    views       int             default 0,
+    contents    text            not null,
+    ipaddr      varchar(15)     not null,
+    primary key (bno)
+    -- ,foreign key (userid) references member2(userid)
+);
+-- 제약조건을 fkuid로 따로 작성해서 관리하기 좋음
+alter table board2
+    add constraint fkuid
+        foreign key (userid) references member2 (userid);
+
+insert into board2 (title, userid, contents, ipaddr)
+values ('오늘 호우주의보!', 'jina' , '비오니깐 운동 패스~!', '115.92.164.155');
+
+insert into board2 (title, userid, contents, ipaddr)
+values ('오늘 호우!', 'jinb' , '비오니깐!', '115.92.164.155');
+
+select count(userid) from board2;
+
+select count(userid) cnt, ceil(count(userid) / 25) pages from board2;
+
