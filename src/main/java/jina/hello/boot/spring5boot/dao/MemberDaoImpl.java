@@ -15,7 +15,6 @@ import java.util.List;
 public class MemberDaoImpl implements MemberDao{
     // mybatis를 사용하기 위해 필요한 객체 DI
     // 단, 생성자 주입 방식 사용!
-    @Autowired
     final MemberMapper memberMapper;
 
 //    @Autowired
