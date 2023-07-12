@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class BoardMapperUnitTest {
     @DisplayName("BoardMapper select Test")
     void selectBoard() {
         int cpg = 1;
-        int stnum = (cpg -1) * 25;
+        int stnum = (cpg - 1) * 25;
         List<Board> results = boardMapper.selectBoard(stnum);
         System.out.println(results);
         assertNotNull(results);
@@ -36,5 +37,20 @@ public class BoardMapperUnitTest {
         Board result = boardMapper.selectOneBoard(bno);
         //System.out.println(result);
         assertNotNull(result);
+    }
+
+    @Test
+    @DisplayName("BoardMapper insert Test")
+    @Transactional
+    void insertBoard() {
+        Board b = new Board();
+        b.setUserid("abc123");
+        // abc123a는 member2 테이블의 외래키(foreign key) 조건 때문에 db에 있는 아이디로 테스트
+        b.setTitle("t");
+        b.setContents("c");
+        b.setIpaddr("127.0.0.1");
+        int result = boardMapper.insertBoard(b);
+        //System.out.println(result);
+        assertEquals(result, 1);
     }
 }
