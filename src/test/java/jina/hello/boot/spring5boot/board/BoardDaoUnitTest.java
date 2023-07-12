@@ -9,9 +9,11 @@ import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.context.annotation.Import;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
@@ -39,5 +41,20 @@ public class BoardDaoUnitTest {
         Board result = bdao.selectOneBoard(bno);
         //System.out.println(results);
         assertNotNull(bno);
+    }
+
+    @Test
+    @DisplayName("BoardDao insert Test")
+    @Transactional
+    void insertBoard() {
+        Board b = new Board();
+        b.setUserid("abc123");
+        // abc123a는 member2 테이블의 외래키(foreign key) 조건 때문에 db에 있는 아이디로 테스트
+        b.setTitle("t");
+        b.setContents("c");
+        b.setIpaddr("127.0.0.1");
+        int result = bdao.insertBoard(b);
+        //System.out.println(result);
+        assertEquals(result, 1);
     }
 }
