@@ -57,13 +57,13 @@
                             <th>567</th>
                             <th>1234</th>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>시간은 금이라구, 친구!</td>
-                            <td>운영자</td>
-                            <td>2023-05-01</td>
-                            <td>567</td>
-                            <td>1234</td>
+                        <tr th:each="bd : ${bds}">
+                            <td th:text="${bd.bno}">1</td>
+                            <td th:text="${bd.title}"> 시간은 금이라구, 친구!</td>
+                            <td th:text="${bd.userid}">운영자</td>
+                            <td th:text="${#strings.substring(bd.regdate,0,10)}">2023-05-01</td>
+                            <td th:text="${bd.thumbs}">567</td>
+                            <td th:text="${bd.views}">1234</td>
                         </tr>
                     </tbody>
                 </table>
