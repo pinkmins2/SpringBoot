@@ -32,4 +32,12 @@ public class BoardDaoUnitTest {
         assertNotNull(results);
     }
 
+    @Test
+    @DisplayName("BoardDao selectOne Test")
+    void selectOneBoard() {
+        String bno = "3009";
+        Board result = bdao.selectOneBoard(bno);
+        //System.out.println(results);
+        assertNotNull(bno);
+    }
 }
