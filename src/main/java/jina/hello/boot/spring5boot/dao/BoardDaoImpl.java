@@ -3,7 +3,6 @@ package jina.hello.boot.spring5boot.dao;
 import jina.hello.boot.spring5boot.model.Board;
 import jina.hello.boot.spring5boot.mybatis.BoardMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,8 +19,8 @@ public class BoardDaoImpl implements BoardDao{
     }
 
     @Override
-    public List<Board> selectBoard() {
-        return boardMapper.selectBoard();
+    public List<Board> selectBoard(int stnum) {
+        return boardMapper.selectBoard(stnum);
     }
 
     @Override
