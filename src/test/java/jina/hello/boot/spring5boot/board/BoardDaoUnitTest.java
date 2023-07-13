@@ -11,7 +11,9 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -63,5 +65,16 @@ public class BoardDaoUnitTest {
     void countPage() {
         int result = bdao.selectCountBoard();
         assertNotNull(result);
+    }
+
+    @Test
+    @DisplayName("BoardDao findBoard Test")
+    void findBoard() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("findtype","titcont");
+        params.put("findkey","t");
+        params.put("stnum", 0);
+        List<Board> results = bdao.selectFindBoard(params);
+        assertNotNull(results);
     }
 }
