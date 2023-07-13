@@ -9,4 +9,5 @@ public interface BoardService {
     List<Board> readBoard(Integer cpg);
     Board readOneBoard(String bno);
     int countBoard();
+    List<Board> readFindBoard(Integer cpg, String ftype, String fkey);
 }
