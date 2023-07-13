@@ -245,6 +245,26 @@ rmvbdbtn?.addEventListener('click', () => {
 
 let lstbdbtn = document.querySelector("#lstbdbtn")
 lstbdbtn?.addEventListener('click', () => {
-    location.href = '/board/list/1';
+    history.back();
+    //ocation.href = '/board/list/1';
 });
 
+
+// board write
+let wrtbdbtn = document.querySelector("#wrtbdbtn")
+wrtbdbtn?.addEventListener('click', () => {
+    let frm = document.forms.bdfrm;
+    if(frm.title.value === '') alert('제목을 작성하세요!!');
+    else if(frm.contents.value === '') alert('본문을 작성하세요!!');
+    else if(grecaptcha.getResponse() === '') alert('자동쓰기방지를 클릭하세요!!');
+    else {
+        frm.method = 'post';
+        frm.submit();
+    }
+});
+
+let cancelbtn3 = document.querySelector("#cancelbtn3")
+cancelbtn3?.addEventListener('click', () => {
+    history.back();
+    //location.href = '/board/list/1';
+})
