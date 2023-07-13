@@ -29,4 +29,9 @@ public class BoardDaoImpl implements BoardDao{
         return boardMapper.selectOneBoard(bno);
     }
 
+    @Override
+    public int selectCountBoard() {
+        return boardMapper.selectCountBoard();
+    }
+
 }
