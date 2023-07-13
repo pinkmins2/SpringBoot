@@ -53,4 +53,14 @@ public class BoardMapperUnitTest {
         //System.out.println(result);
         assertEquals(result, 1);
     }
+
+    @Test
+    @DisplayName("BoardMapper updatd Test")
+    @Transactional
+    void updateBoard() {
+        String bno = "3022";
+        int result = boardMapper.updateViewBoard(bno);
+        //System.out.println(result);
+        assertEquals(result, 1);
+    }
 }
