@@ -24,6 +24,7 @@ public class BoardController {
         logger.info("board/list 호출!!");
         m.addAttribute("bds",bsrv.readBoard(cpg));
         m.addAttribute("cpg",cpg);
+        m.addAttribute("cntpg",bsrv.countBoard());
         return "board/list";
     }
 
