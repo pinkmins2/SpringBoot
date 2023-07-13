@@ -25,6 +25,7 @@ public class BoardController {
         m.addAttribute("bds",bsrv.readBoard(cpg));
         m.addAttribute("cpg",cpg);
         m.addAttribute("cntpg",bsrv.countBoard());
+        m.addAttribute("stpg",((cpg-1)/10)*10+1);
         return "board/list";
     }
 
