@@ -26,6 +26,10 @@ public class BoardController {
         m.addAttribute("cpg",cpg);
         m.addAttribute("cntpg",bsrv.countBoard());
         m.addAttribute("stpg",((cpg-1)/10)*10+1);
+        //만일, 현재페이지(cpg)가 총 페이지 수(cntpg)보다 크면 cpg를 1페이지로 강제 이동
+       if(cpg > (int)m.getAttribute("cntpg")) {
+            return "redirect:/board/list/1";
+        }
         return "board/list";
     }
 
