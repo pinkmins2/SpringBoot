@@ -27,8 +27,7 @@ public class BoardControllerUnitTest {
     @DisplayName("BoardController read Test")
     @Transactional
     void readBoard() throws Exception {
-        mvc.perform(get("/board/list")
-                        .param("cpg","1"))
+        mvc.perform(get("/board/list/1"))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
