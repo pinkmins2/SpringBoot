@@ -16,7 +16,7 @@
     </select>
 
     <insert id="insertPdsAttach" parameterType="PdsAttach">
-        insert into PdsAttach (pno, fname, ftype, fsize)
+        insert into Pdsattach (pno, fname, ftype, fsize)
         values (#{pno},#{fname},#{ftype},#{fsize})
     </insert>
 
