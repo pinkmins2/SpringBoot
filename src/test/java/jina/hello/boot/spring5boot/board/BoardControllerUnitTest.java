@@ -57,7 +57,7 @@ public class BoardControllerUnitTest {
     @DisplayName("BoardController find Test")
     @Transactional
     void findBoard() throws Exception {
-        mvc.perform(get("/board/find/1/title/t"))
+        mvc.perform(get("/board/find/userid/jina/1"))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
