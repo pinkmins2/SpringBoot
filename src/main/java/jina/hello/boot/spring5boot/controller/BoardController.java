@@ -55,13 +55,15 @@ public class BoardController {
         return returnPage;
     }
 
-    @GetMapping("/find/{cpg}/{findtype}/{findkey}")
+    @GetMapping("/find/{findtype}/{findkey}/{cpg}")
     public String find(Model m, @PathVariable Integer cpg, @PathVariable String findtype, @PathVariable String findkey ){
         logger.info("board/find 호출!!");
         m.addAttribute("bds",bsrv.readFindBoard(cpg, findtype, findkey));
         m.addAttribute("cpg",cpg);
-        m.addAttribute("cntpg",bsrv.countBoard());
+        m.addAttribute("cntpg",bsrv.countFindBoard(findtype,findkey));
         m.addAttribute("stpg",((cpg-1)/10)*10+1);
+        m.addAttribute("ftype", findtype);
+        m.addAttribute("fkey", findkey);
         //만일, 현재페이지(cpg)가 총 페이지 수(cntpg)보다 크면 cpg를 1페이지로 강제 이동
         if(cpg > (int)m.getAttribute("cntpg")) {
             return "redirect:/board/list/1";
