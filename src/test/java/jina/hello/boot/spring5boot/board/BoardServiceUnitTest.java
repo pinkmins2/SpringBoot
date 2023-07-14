@@ -76,4 +76,14 @@ public class BoardServiceUnitTest {
         List<Board> results = bsrv.readFindBoard(cpg,ftype,fkey);
         assertNotNull(results);
     }
+
+    @Test
+    @DisplayName("BoardDao countFindBoard Test")
+    void countFindBoard() {
+        Map<String, Object> params = new HashMap<>();
+        String ftype = "userid";
+        String fkey = "jina";
+        int result = bsrv.countFindBoard(ftype,fkey);
+        assertNotNull(result);
+    }
 }
