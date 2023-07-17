@@ -82,3 +82,14 @@ alter table pds
 alter table pdsattach
     add constraint fkpno
         foreign key (pno) references pds(pno);
+
+-- join
+select * from pds p join pdsattach pa
+    using(pno) where p.pno='17';
+
+-- view(가상테이블)
+create view ppa as
+select * from pds p join pdsattach pa using(pno)
+where p.pno = '17';
+
+select * from ppa where pno='17';
