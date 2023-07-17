@@ -10,14 +10,12 @@ import java.util.Map;
 @Mapper
 public interface PdsMapper {
     int insertPds(Pds p);
-
     int lastPdsPno();
-
     int insertPdsAttach(PdsAttach pa);
-//    List<Pds> selectPds(int stnum);
-//    Pds selectOnePds(String pno);
+    List<Pds> selectPds(int stnum);
+    int selectCountPds();
+    Pds selectOnePds(String pno);
 //    int updateViewPds(String pno);
-//    int selectCountPds();
 //    List<Pds> selectFindPds(Map<String, Object> params);
 //    int countFindPds(Map<String, Object> params);
 }

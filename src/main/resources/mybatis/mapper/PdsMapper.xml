@@ -3,6 +3,25 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="jina.hello.boot.spring5boot.mybatis.PdsMapper">
+    <!-- join result -->
+    <resultMap id="pa" type="PdsAttach">
+        <result column="fanme" property="fanme" />
+        <result column="ftype" property="ftype" />
+        <result column="fsize" property="fsize" />
+        <result column="fdown" property="fdown" />
+    </resultMap>
+    <resultMap id="ppa" type="Pds">
+        <result column="pno" property="pno" />
+        <result column="title" property="title" />
+        <result column="userid" property="userid" />
+        <result column="regdate" property="regdate" />
+        <result column="thumbs" property="thumbs" />
+        <result column="views" property="views" />
+        <result column="contents" property="contents" />
+        <result column="ipaddr" property="ipaddr" />
+        <collection property="pa" resultMap="pa" />
+    </resultMap>
+
     <insert id="insertPds" parameterType="Pds">
         insert into pds (title, userid, contents, ipaddr)
         values (#{title},#{userid},#{contents},#{ipaddr})
@@ -16,52 +35,50 @@
     </select>
 
     <insert id="insertPdsAttach" parameterType="PdsAttach">
-        insert into Pdsattach (pno, fname, ftype, fsize)
+        insert into pdsattach (pno, fname, ftype, fsize)
         values (#{pno},#{fname},#{ftype},#{fsize})
     </insert>
 
-<!--    <select id="selectPds" resultType="Pds">-->
-<!--        select bno, title, userid, regdate, thumbs, views  from Pds2-->
-<!--        order by bno desc-->
-<!--        limit #{stnum}, 25-->
-<!--    </select>-->
+    <select id="selectPds" resultType="Pds">
+        select pno, title, userid, regdate, thumbs, views  from pds
+        order by pno desc
+        limit #{stnum}, 25
+    </select>
 
-<!--    <select id="selectOnePds" resultType="Pds">-->
-<!--        select * from Pds2 where bno = #{bno}-->
-<!--    </select>-->
+    <select id="selectOnePds" resultMap="ppa">
+        select * from ppa where pno = #{pno}
+    </select>
 
-<!--    <update id="updateViewPds">-->
-<!--        update Pds2 set views = views+1 where bno = #{bno}-->
-<!--    </update>-->
+    <select id="selectCountPds">
+        select ceil(count(pno) / 25) cntpg from pds
+    </select>
 
-<!--    <select id="selectCountPds">-->
-<!--        select ceil(count(bno) / 25) cntpg from Pds2-->
-<!--    </select>-->
+    <!--
+    &lt;!&ndash; 동적질의문으로 검색 기능 구현 &ndash;&gt;
+    &lt;!&ndash; 단, 컬럼명이나 테이블명에는 #{}가 아닌 ${}를 사용 &ndash;&gt;
+    <select id="selectFindBoard" parameterType="map" resultType="Board">
+        select bno, title, userid, regdate, thumbs, views from board2
+        <if test="findtype !='titcont'">
+            where ${findtype} like concat('%', #{findkey}, '%')
+        </if>
+        <if test="findtype == 'titcont'">
+            where title like concat('%', #{findkey}, '%') or contents like concat('%', #{findkey}, '%')
+        </if>
+        order by bno desc
+        limit #{stnum}, 25
+    </select>
 
-<!--    &lt;!&ndash; 동적질의문으로 검색 기능 구현 &ndash;&gt;-->
-<!--    &lt;!&ndash; 단, 컬럼명이나 테이블명에는 #{}가 아닌 ${}를 사용 &ndash;&gt;-->
-<!--    <select id="selectFindPds" parameterType="map" resultType="Pds">-->
-<!--        select bno, title, userid, regdate, thumbs, views from Pds2-->
-<!--        <if test="findtype !='titcont'">-->
-<!--            where ${findtype} like concat('%', #{findkey}, '%')-->
-<!--        </if>-->
-<!--        <if test="findtype == 'titcont'">-->
-<!--            where title like concat('%', #{findkey}, '%') or contents like concat('%', #{findkey}, '%')-->
-<!--        </if>-->
-<!--        order by bno desc-->
-<!--        limit #{stnum}, 25-->
-<!--    </select>-->
-
-<!--    &lt;!&ndash; 동적질의문으로 검색 기능 구현 2 &ndash;&gt;-->
-<!--    <select id="countFindPds" parameterType="map">-->
-<!--        select ceil(count(bno) / 25) cntpg from Pds2-->
-<!--        <if test="findtype !='titcont'">-->
-<!--            where ${findtype} like concat('%', #{findkey}, '%')-->
-<!--        </if>-->
-<!--        <if test="findtype == 'titcont'">-->
-<!--            where title like concat('%', #{findkey}, '%')-->
-<!--            or contents like concat('%', #{findkey}, '%')-->
-<!--        </if>-->
-<!--    </select>-->
+    -- 동적질의문으로 검색 기능 구현 2
+    <select id="countFindBoard" parameterType="map">
+        select ceil(count(bno) / 25) cntpg from board2
+        <if test="findtype !='titcont'">
+            where ${findtype} like concat('%', #{findkey}, '%')
+        </if>
+        <if test="findtype == 'titcont'">
+            where title like concat('%', #{findkey}, '%')
+            or contents like concat('%', #{findkey}, '%')
+        </if>
+    </select>
+    -->
 
 </mapper>
