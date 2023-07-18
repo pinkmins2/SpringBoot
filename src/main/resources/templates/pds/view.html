@@ -41,14 +41,15 @@
                 <tr>
                     <td class="vcont" colspan="2" th:text="${p.contents}">본문</td>
                 </tr>
+                <tr>
+                    <td class="vinfo" colspan="2">
+                        <a th:href="|/pds/down/${p.pno}|" th:text="${p.pa.fname}">파일명</a>
+                        <span th:text="|${p.pa.fsize} KB/${p.pa.fdown}회 다운로드|">파일정보</span>
+                    </td>
+                </tr>
             </table>
-            <tr>
-                <td class="vinfo" colspan="2">
-                    <a th:href="|/pds/down/${p.pno}|" th:text="${p.pa.fname}">파일명</a>
-                    <span th:text="|${p.pa.fsize} KB/${p.pa.fdown}회 다운로드|">파일정보</span>
-                </td>
-            </tr>
         </div><!-- 본문 글 -->
+
         <div class="row mb-5 mt-3">
             <div class="row offset-1 col-5">
                 <button type="button" class="btn btn-light col-3" id="modpdsbtn">
@@ -65,6 +66,46 @@
                 </button>
             </div>
         </div><!-- 아래쪽 버튼 -->
+
+        <div class="my-5">
+            <i class="fa-solid fa-comments fs-2xl"> 나도 한마디</i>
+        </div>
+        <div class="row offset-1 col-10">
+            <table class="table tbborder">
+                <tr>
+                    <td style="width: 25%"><h4>nickname</h4></td>
+                    <td>
+                        <div class="cmtbg">2023-07-18 12:00:01
+                            <span style="float: right">[추가] / [수정] / [삭제]</span>
+                        </div>
+                        <p class="py-5">comment</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 25%"><h4>&nbsp;</h4></td>
+                    <td>
+                        <div class="rpybg">id
+                            <span style="float: right">2023-07-18 12:00:01</span>
+                        </div>
+                        <p class="py-5">recomment</p>
+                    </td>
+                </tr>
+            </table>
+        </div><!-- 댓글 목록 -->
+        <div class="row offset-1 col-10 my-3">
+            <form name="cmtfrm" id="cmtfrm" class="bg-light p-3">
+                <div class="row align-items-center">
+                    <label class="col-2 form-label text-end">로그인하세요</label>
+                    <div class="col-8">
+                        <textarea id="commts" name="commts" rows="7" class="form-control"></textarea>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-secondary" id="newcmtbtn">
+                            <i class="fa fa-commenting"></i> 댓글쓰기</button>
+                    </div>
+                </div>
+            </form>
+        </div><!-- 댓글 폼 -->
     </div>
 
     <script src="/assets/js/pds.js" charset="utf-8"></script>
