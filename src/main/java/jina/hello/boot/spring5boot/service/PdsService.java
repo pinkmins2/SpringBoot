@@ -13,4 +13,8 @@ public interface PdsService {
     List<Pds> readPds(Integer cpg);
     int countPds();
     Pds readOnePds(String pno);
+
+    String readOnePesAttach(String pno);
+
+    Map<String, Object> getHeaderResource(String fname);
 }
