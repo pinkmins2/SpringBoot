@@ -58,6 +58,16 @@
         select * from pdsattach where pno = #{pno}
     </select>
 
+    <insert id="insertPdsComment" parameterType="PdsComment">
+        insert into pdscomments (userid, comments, ref, pno)
+        values (#{userid},#{comments},#{ref},#{pno})
+    </insert>
+
+    <select id="selectPdsComment" resultType="PdsComment">
+        select * from pdscomments where pno = #{pno}
+        order by ref
+    </select>
+
     <!--
     &lt;!&ndash; 동적질의문으로 검색 기능 구현 &ndash;&gt;
     &lt;!&ndash; 단, 컬럼명이나 테이블명에는 #{}가 아닌 ${}를 사용 &ndash;&gt;
