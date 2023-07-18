@@ -5,7 +5,7 @@
 <mapper namespace="jina.hello.boot.spring5boot.mybatis.PdsMapper">
     <!-- join result -->
     <resultMap id="pa" type="PdsAttach">
-        <result column="fanme" property="fanme" />
+        <result column="fname" property="fname" />
         <result column="ftype" property="ftype" />
         <result column="fsize" property="fsize" />
         <result column="fdown" property="fdown" />
@@ -53,6 +53,11 @@
         select ceil(count(pno) / 25) cntpg from pds
     </select>
 
+    <!-- resultType은 class 이름이라 대소문자 구별, spl문은 테이블명으로 통일-->
+    <select id="selectOnePdsAttach" resultType="PdsAttach">
+        select * from pdsattach where pno = #{pno}
+    </select>
+
     <!--
     &lt;!&ndash; 동적질의문으로 검색 기능 구현 &ndash;&gt;
     &lt;!&ndash; 단, 컬럼명이나 테이블명에는 #{}가 아닌 ${}를 사용 &ndash;&gt;
@@ -68,7 +73,7 @@
         limit #{stnum}, 25
     </select>
 
-    -- 동적질의문으로 검색 기능 구현 2
+     동적질의문으로 검색 기능 구현 2
     <select id="countFindBoard" parameterType="map">
         select ceil(count(bno) / 25) cntpg from board2
         <if test="findtype !='titcont'">
