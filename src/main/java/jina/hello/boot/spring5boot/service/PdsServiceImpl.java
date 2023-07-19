@@ -3,6 +3,7 @@ package jina.hello.boot.spring5boot.service;
 import jina.hello.boot.spring5boot.dao.PdsDao;
 import jina.hello.boot.spring5boot.model.Pds;
 import jina.hello.boot.spring5boot.model.PdsAttach;
+import jina.hello.boot.spring5boot.model.PdsComment;
 import jina.hello.boot.spring5boot.utils.PdsUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,20 @@ public class PdsServiceImpl implements PdsService{
         // 다운로드할 파일의 본체(내용) 가져옴
         objs.put("resource", pdsUtils.getResource(fname));
         return objs;
+    }
+
+    @Override
+    public boolean newPdsComment(PdsComment pc) {
+        return (pdao.insertPdsComment(pc) > 0) ? true : false;
+    }
+
+    @Override
+    public List<PdsComment> readPdsComment(String pno) {
+        return pdao.selectPdsComment(pno);
+    }
+
+    @Override
+    public boolean newPdsReply(PdsComment pc) {
+        return (pdao.insertPdsReply(pc) > 0) ? true : false;
     }
 }
