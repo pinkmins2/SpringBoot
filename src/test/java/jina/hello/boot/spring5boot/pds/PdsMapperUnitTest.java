@@ -3,6 +3,7 @@ package jina.hello.boot.spring5boot.pds;
 import jina.hello.boot.spring5boot.model.Board;
 import jina.hello.boot.spring5boot.model.Pds;
 import jina.hello.boot.spring5boot.model.PdsAttach;
+import jina.hello.boot.spring5boot.model.PdsComment;
 import jina.hello.boot.spring5boot.mybatis.PdsMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,6 +45,28 @@ public class PdsMapperUnitTest {
     void selectOnePA() {
         String pno = "17";
         PdsAttach result = pdsMapper.selectOnePdsAttach(pno);
+        //System.out.println(result);
+        assertNotNull(result);
+    }
+
+    @Test
+    @DisplayName("PdsMapper selectPC Test")
+    void selectPdsComments() {
+        String pno = "17";
+        List<PdsComment> results = pdsMapper.selectPdsComment(pno);
+        //System.out.println(result);
+        assertNotNull(results);
+    }
+
+    @Test
+    @DisplayName("PdsMapper newComment Test")
+    @Transactional
+    void newComment() {
+        PdsComment pc = new PdsComment();
+        pc.setUserid("abc123");
+        pc.setComments("테스트");
+        pc.setPno("17");
+        int result = pdsMapper.insertPdsComment(pc);
         //System.out.println(result);
         assertNotNull(result);
     }
