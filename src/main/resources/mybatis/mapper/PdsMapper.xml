@@ -60,13 +60,18 @@
 
     <insert id="insertPdsComment" parameterType="PdsComment">
         insert into pdscomments (userid, comments, ref, pno)
-        values (#{userid},#{comments},#{ref},#{pno})
+        values (#{userid},#{comments},last_insert_id()+1,#{pno})
     </insert>
 
     <select id="selectPdsComment" resultType="PdsComment">
         select * from pdscomments where pno = #{pno}
         order by ref
     </select>
+
+    <insert id="insertPdsReply" parameterType="PdsComment">
+        insert into pdscomments (userid, comments, ref, pno)
+        values (#{userid},#{comments},#{ref},#{pno})
+    </insert>
 
     <!--
     &lt;!&ndash; 동적질의문으로 검색 기능 구현 &ndash;&gt;

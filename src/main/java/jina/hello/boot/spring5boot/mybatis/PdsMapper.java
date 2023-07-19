@@ -19,6 +19,7 @@ public interface PdsMapper {
     PdsAttach selectOnePdsAttach(String pno);
     int insertPdsComment(PdsComment pc);
     List<PdsComment> selectPdsComment(String pno);
+    int insertPdsReply(PdsComment pc);
 //    int updateViewPds(String pno);
 //    List<Pds> selectFindPds(Map<String, Object> params);
 //    int countFindPds(Map<String, Object> params);
