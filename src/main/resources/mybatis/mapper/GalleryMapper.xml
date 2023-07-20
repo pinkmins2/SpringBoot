@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jina.hello.boot.spring5boot.mybatis.GalleryMapper">
+    <!-- join result -->
+    <resultMap id="ga" type="GalAttach">
+        <result column="fname" property="fname" />
+        <result column="fsize" property="fsize" />
+    </resultMap>
+    <resultMap id="gga" type="Gallery">
+        <result column="gno" property="gno" />
+        <result column="title" property="title" />
+        <result column="userid" property="userid" />
+        <result column="regdate" property="regdate" />
+        <result column="thumbs" property="thumbs" />
+        <result column="views" property="views" />
+        <result column="contents" property="contents" />
+        <result column="ipaddr" property="ipaddr" />
+        <collection property="ga" resultMap="ga" />
+    </resultMap>
+
+    <insert id="insertGallery" parameterType="Gallery">
+        insert into gallery (title, userid, contents, ipaddr)
+        values (#{title},#{userid},#{contents},#{ipaddr})
+    </insert>
+
+    <insert id="insertGalleryAttach" parameterType="GalAttach">
+        insert into galAttach (gno, fname, fsize)
+        values (#{pno},#{fname},#{fsize})
+    </insert>
+
+    <select id="selectGalllery" resultType="Gallery">
+        select gno, title, userid, regdate, thumbs, views  from gallery
+        order by gno desc
+        limit #{stnum}, 25
+    </select>
+
+    <select id="selectOneGallery" resultMap="gga">
+        select * from gga where gno = #{gno}
+    </select>
+
+    <select id="selectCountGallery">
+        select ceil(count(gno) / 25) cntpg from gallery
+    </select>
+
+    <!--<insert id="insertPdsComment" parameterType="PdsComment">
+        insert into pdscomments (userid, comments, ref, pno)
+        values (#{userid},#{comments},last_insert_id()+1,#{pno})
+    </insert>
+
+    <select id="selectPdsComment" resultType="PdsComment">
+        select * from pdscomments where pno = #{pno}
+        order by ref
+    </select>
+
+    <insert id="insertPdsReply" parameterType="PdsComment">
+        insert into pdscomments (userid, comments, ref, pno)
+        values (#{userid},#{comments},#{ref},#{pno})
+    </insert>-->
+
+</mapper>
