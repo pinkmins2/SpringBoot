@@ -30,7 +30,7 @@
         values (#{pno},#{fname},#{fsize})
     </insert>
 
-    <select id="selectGalllery" resultType="Gallery">
+    <select id="selectGallery" resultType="Gallery">
         select gno, title, userid, regdate, thumbs, views  from gallery
         order by gno desc
         limit #{stnum}, 25
