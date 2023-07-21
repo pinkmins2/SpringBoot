@@ -36,20 +36,22 @@
                 </tr>
                 <tr class="vinfo">
                     <td th:text="${g.userid}">작성자</td>
-                    <td class="text-end" th:text="|${#strings.substring(p.regdate,0,16)} / ${g.thumbs} / ${g.views}|">작성일/추천/조회</td>
+                    <td class="text-end" th:text="|${#strings.substring(g.regdate,0,16)} / ${g.thumbs} / ${g.views}|">작성일/추천/조회</td>
                 </tr>
                 <tr>
                     <td class="vcont" colspan="2">
                         <p th:text="${g.contents}">본문글</p>
                         <th:block th:each="img : ${#strings.arraySplit(g.ga.fname,';')}">
-                            <img th:src="|http://localhost/cdn/${img}|">
+                            <img th:src="|http://localhost/cdn/${img}|" class="img-fluid">
                         </th:block>
                     </td>
                 </tr>
                 <tr>
-                    <td class="vinfo" colspan="2" th:with="fsizes=${#strings.arraySplit(g.ga.fsize, ';')}">
-                        <th:block th:each="f : ${fsizes}">
-                            <span th:text="|${f}KB|"></span>
+                    <td class="vinfo" colspan="2"
+                        th:with="fsizes=${#strings.arraySplit(g.ga.fsize, ';')}">
+                        <th:block th:each="fn, stat : ${#strings.arraySplit(g.ga.fname, ';')}">
+                            <!-- fn: 파일명 stat: 파일크기 -->
+                            <div th:text="|${fn} (${fsizes[__${stat.index}__]}KB)|"></div>
                         </th:block>
                     </td>
                 </tr>
