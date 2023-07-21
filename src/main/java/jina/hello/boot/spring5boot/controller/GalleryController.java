@@ -59,4 +59,10 @@ public class GalleryController {
         return returnPage;
     }
 
+    @GetMapping("/view/{gno}")
+    public String view(Model m, @PathVariable String gno) {
+        logger.info("gallery/view 호출!!");
+        m.addAttribute("g",gsrv.readOneGallery(gno));       // 본문글
+        return "gallery/view";
+    }
 }
