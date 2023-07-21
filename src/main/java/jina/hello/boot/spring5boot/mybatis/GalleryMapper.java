@@ -14,6 +14,7 @@ public interface GalleryMapper {
     int selectCountGallery();
     Gallery selectOneGallery(String gno);
     GalAttach selectOneGalleryAttach(String gno);
+    int lastGalGno();
 //    int insertPdsComment(PdsComment pc);
 //    List<PdsComment> selectPdsComment(String pno);
 //    int insertPdsReply(PdsComment pc);
