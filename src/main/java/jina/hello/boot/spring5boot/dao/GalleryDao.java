@@ -11,4 +11,9 @@ public interface GalleryDao {
     int insertGallery(Gallery g);
 
     int insertGalAttach(GalAttach ga);
+
+
+    int readOneGallery(String gno);
+
+    Gallery selectOneGallery(String gno);
 }
