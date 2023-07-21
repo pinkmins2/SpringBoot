@@ -42,4 +42,10 @@ public class GalleryServiceImpl implements GalleryService{
         ga.setGno(gno+"");
         return (gdao.insertGalAttach(ga) > 0) ? true : false;
     }
+
+    @Override
+    public Gallery readOneGallery(String gno) {
+        return gdao.selectOneGallery(gno);
+    }
+
 }
