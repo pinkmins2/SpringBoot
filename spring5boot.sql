@@ -153,14 +153,21 @@ alter table gallery
 
 -- galattach
 create table galattach(
-                          gano        int             auto_increment,
-                          gno         int             not null,       -- 게시글 번호
-                          fname       varchar(1024)    not null,       -- uuid 포함
-                          fsize       varchar(256)      not null,
-                          primary key (gano)
+      gano        int             auto_increment,
+      gno         int             not null,       -- 게시글 번호
+      fname       varchar(1024)    not null,       -- uuid 포함
+      fsize       varchar(256)      not null,
+      primary key (gano)
 );
 
 alter table galattach
     add constraint fkgno
         foreign key (gno) references gallery(gno);
 
+create view gga as select * from gallery g join galattach ga using(gno);
+
+select * from gga;
+
+create view gga0 as
+    select gno, title, userid, substring(regdate, 1, 10) regdate, thumbs, views, fname
+    from gallery g join galattach ga using(gno);
